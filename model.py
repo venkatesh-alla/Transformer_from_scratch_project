@@ -23,7 +23,7 @@ class PositionalEncoding(nn.Module):
         super().__init__()
         self.d_model = d_model
         self.seq_len = seq_len # Each token in the sequence/sentence is assigned a seperate positional encoding info
-        self.droupout = nn.Dropout(dropout)
+        self.dropout = nn.Dropout(dropout)
 
         # Create a matrix of shape (seq_len, d_model)
         pe = torch.zeros(seq_len, d_model)
