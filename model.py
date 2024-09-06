@@ -42,9 +42,9 @@ class PositionalEncoding(nn.Module):
         # Register the positional encoding as a buffer
         self.register_buffer('pe', pe) # Tensor pe is not just a parameter now, it is stored in the buffer along with the state of the model when we save
 
-        def forward(self, x):
-            x = x + (self.pe[:, :x.shape[1], :]).requires_grad_(False) # (entire batch, seq_len of the respective x, d_model) # requires_grad_(False) as we don't want to learn this tensor
-            return self.dropout(x)
+    def forward(self, x):
+        x = x + (self.pe[:, :x.shape[1], :]).requires_grad_(False) # (entire batch, seq_len of the respective x, d_model) # requires_grad_(False) as we don't want to learn this tensor
+        return self.dropout(x)
         
 # Layer normalization
 class LayerNormalization(nn.Module):
